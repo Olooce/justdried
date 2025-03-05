@@ -7,7 +7,7 @@ const CTASection = () => {
     <div className="cta-section">
       <h2>Join Our Community!</h2>
       <p>Sign up for exclusive discounts, updates, and healthy tips.</p>
-      <Link to="/shop" className="cta-button">Shop Now</Link>
+      <Link to="/contact" className="cta-button">Get in touch</Link>
     </div>
   );
 };
