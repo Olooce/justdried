@@ -1,37 +1,31 @@
-import ProductCard from '../components/ProductCard';
+import React from "react";
+import "../styles/Contact.css";
 
-const products = [
-    {
-      id: 1,
-      name: "Classic T-Shirt",
-      price: 19.99,
-      image: "https://cdn.pixabay.com/photo/2016/11/19/14/00/t-shirt-1836049_960_720.jpg",
-    },
-    {
-      id: 2,
-      name: "Denim Jacket",
-      price: 49.99,
-      image: "https://cdn.pexels.com/photos/428338/pexels-photo-428338.jpeg",
-    },
-    {
-      id: 3,
-      name: "Sneakers",
-      price: 79.99,
-      image: "https://images.unsplash.com/photo-1519741491095-3df5e121c6b3",
-    },
-  ];
-  
-export const Contact = () => {
-    return (
-        <div className="shop">
-          <h2>Shop Our Products</h2>
-          <div className="product-grid">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>   
-      );
+const Contact = () => {
+  return (
+    <div className="contact-container">
+      <h2>Contact Us</h2>
+      <p>We'd love to hear from you! Feel free to reach out.</p>
+
+      <div className="contact-content">
+        {/* Contact Form */}
+        <form className="contact-form">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea placeholder="Your Message" rows="5" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+
+        {/* Contact Details */}
+        <div className="contact-details">
+          <h3>Get in Touch</h3>
+          <p><strong>Email:</strong> support@justdried.com</p>
+          <p><strong>Phone:</strong> +254 712 345 678</p>
+          <p><strong>Location:</strong> Nairobi, Kenya</p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Contact;
