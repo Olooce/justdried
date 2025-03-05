@@ -1,0 +1,25 @@
+/* Soft Divider */
+
+  /* Background variation */
+  .featured-products {
+    background: #f9f9f9; /* Light gray background */
+    padding: 50px 0;
+  }
+  
+  .categories {
+    background: #fff; /* White background */
+    padding: 50px 0;
+  }
+  
+  /* Smooth fade-in effect */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
