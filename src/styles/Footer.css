@@ -1,15 +1,83 @@
+/* Footer Styles */
 .footer {
-    background: #222;
-    color: white;
-    text-align: center;
-    padding: 1.5rem 0;
-    width: 100%;
-    position: relative; /* Remove 'fixed' if it was set */
-    bottom: 0;
-  }
-  
-  .footer p {
-    margin: 0;
-    font-size: 1rem;
-  }
-  
+  background-color: #000; /* Black background */
+  color: white;
+  padding: 40px 0;
+  width: 100%;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin: 15px;
+  text-align: left;
+}
+
+.footer-section h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #FFD700; /* Gold title */
+}
+
+.footer-section p {
+  font-size: 14px;
+  color: #f1f1f1;
+}
+
+/* Footer Links */
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #FFD700; /* Gold hover effect */
+}
+
+/* Social Media Icons */
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #FFD700; /* Gold hover effect */
+}
+
+/* Copyright Section */
+.footer-bottom {
+  margin-top: 30px;
+  font-size: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 15px;
+}

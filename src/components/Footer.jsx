@@ -1,75 +1,52 @@
-// Footer.js
-import React from 'react';
+import React from "react";
+import "../styles/Footer.css"; // Make sure this CSS file exists
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer style={styles.footer}>
-      <div style={styles.container}>
-        <div style={styles.section}>
+    <footer className="footer">
+      <div className="footer-container">
+        {/* About Us */}
+        <div className="footer-section">
           <h4>About Us</h4>
-          <p>Learn more about our company and mission.</p>
+          <p>We provide high-quality dried products that you can trust.</p>
         </div>
-        <div style={styles.section}>
+
+        {/* Quick Links */}
+        <div className="footer-section">
           <h4>Quick Links</h4>
-          <ul style={styles.list}>
+          <ul className="footer-links">
             <li><a href="/">Home</a></li>
             <li><a href="/shop">Shop</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
-        <div style={styles.section}>
+
+        {/* Social Media */}
+        <div className="footer-section">
           <h4>Follow Us</h4>
-          <ul style={styles.socialMedia}>
-            <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-            <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-          </ul>
+          <div className="social-icons">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-facebook"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-instagram"></i>
+            </a>
+          </div>
         </div>
       </div>
-      <div style={styles.copyRight}>
+
+      {/* Copyright Section */}
+      <div className="footer-bottom">
         <p>&copy; {currentYear} JustDried. All rights reserved.</p>
       </div>
     </footer>
   );
-};
-
-const styles = {
-  footer: {
-    backgroundColor: '#333',
-    color: '#fff',
-    padding: '20px 0',
-    position: 'relative',
-    width: '100%',
-    bottom: 0,
-  },
-  container: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '0 20px',
-  },
-  section: {
-    flex: 1,
-    margin: '0 10px',
-  },
-  list: {
-    listStyleType: 'none',
-    padding: 0,
-  },
-  socialMedia: {
-    listStyleType: 'none',
-    padding: 0,
-    display: 'flex',
-    gap: '10px',
-  },
-  copyRight: {
-    textAlign: 'center',
-    marginTop: '10px',
-  },
 };
 
 export default Footer;
