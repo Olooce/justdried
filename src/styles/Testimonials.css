@@ -1,29 +1,35 @@
 .testimonials-container {
   width: 100%;
   overflow: hidden;
-  white-space: nowrap;
-  position: relative;
-  background: linear-gradient(to right, #8B4513, #A0522D); /* Brown gradient */
-  padding: 40px 0;
-  display: flex;
-  justify-content: center;
+  padding: 60px 0;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.testimonials-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: black; /* Theme color */
+  margin-bottom: 40px;
+  margin-top: 0px;
 }
 
 .testimonials-scroll {
   display: flex;
-  gap: 30px;
-  animation: scroll 15s linear infinite;
+  gap: 40px;
+  animation: bounce-scroll 10s ease-in-out infinite alternate;
+  justify-content: center;
 }
 
 .testimonial {
-  min-width: 320px;
-  max-width: 350px;
-  padding: 20px;
+  min-width: 400px;
+  max-width: 420px;
+  padding: 30px;
   background: white;
   border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
   text-align: center;
-  font-size: 16px;
+  font-size: 18px;
   font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
@@ -32,36 +38,35 @@
 }
 
 .testimonial:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .avatar {
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 10px;
-  border: 3px solid #8B4513; /* Border matching theme */
+  margin-bottom: 15px;
 }
 
+/* Customer Text */
 p {
   font-style: italic;
-  color: #333;
-  margin: 10px 0;
+  color: #444;
+  margin: 15px 0;
+  line-height: 1.6;
 }
 
 h4 {
-  color: #8B4513; /* Brown text instead of purple */
+  color: #8B4513;
   font-weight: bold;
-  font-size: 18px;
-  margin-top: 5px;
+  font-size: 20px;
+  margin-top: 8px;
 }
 
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+/* Smooth Bouncing Animation */
+@keyframes bounce-scroll {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-20%); }
+  100% { transform: translateX(0); }
 }

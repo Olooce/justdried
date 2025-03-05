@@ -3,8 +3,8 @@
     justify-content: center; /* Centers content */
     align-items: center; 
     flex-wrap: wrap; /* Ensures responsiveness */
-    gap: 30px; /* Adds spacing between cards */
-    margin-left: -10%;
+    gap: 50px; /* Adds spacing between cards */
+    margin-left: -5%;
   }
   
   .category-card {

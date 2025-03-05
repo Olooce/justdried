@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Testimonials.css"; // Ensure you have this CSS file
+import "../styles/Testimonials.css"; // Ensure this CSS file exists
 
 const testimonials = [
   { 
@@ -37,17 +37,10 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <div className="testimonials-container">
+      <h2 className="testimonials-title">What do customers say?</h2>
       <div className="testimonials-scroll">
         {testimonials.map((testimonial) => (
           <div key={testimonial.id} className="testimonial">
-            <img src={testimonial.avatar} alt={testimonial.author} className="avatar" />
-            <p>"{testimonial.text}"</p>
-            <h4>- {testimonial.author}</h4>
-          </div>
-        ))}
-        {/* Duplicate for smooth infinite scrolling */}
-        {testimonials.map((testimonial) => (
-          <div key={"dup-" + testimonial.id} className="testimonial">
             <img src={testimonial.avatar} alt={testimonial.author} className="avatar" />
             <p>"{testimonial.text}"</p>
             <h4>- {testimonial.author}</h4>
