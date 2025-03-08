@@ -4,7 +4,7 @@ import { CartContext } from '../context/CartContext';
 const Receipt = () => {
   const { cart } = useContext(CartContext);
 
-  // ✅ If the cart is empty, don't show the receipt
+  // If the cart is empty, don't show the receipt
   if (cart.length === 0) {
     return <p>Your cart is empty.</p>;
   }

@@ -1,5 +1,5 @@
 .hero {
-  background-image: url('../assets/Hero.webp'); /* Ensure this image exists */
+  background-image: url('../../public/assets/Hero.webp'); /* Ensure this image exists */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

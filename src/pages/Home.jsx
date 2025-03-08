@@ -4,7 +4,7 @@ import FeaturedProducts from '../components/FeaturedProducts';
 import Categories from '../components/Categories';
 import Testimonials from '../components/Testimonials';
 import CTASection from '../components/CTASection';
-import '../styles/Home.css'; // Ensure styles are applied
+import '../styles/Home.css';
 
 const Home = () => {
   return (

@@ -2,10 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Categories.css';
 
-import nutsImg from '../assets/nuts.jpg';
-import driedFruitsImg from '../assets/dried-fruits.jpg';
-import herbsImg from '../assets/herbs.jpg';
-import specialtyImg from '../assets/specialty.jpg';
+import nutsImg from '../../public/assets/nuts.jpg';
+import driedFruitsImg from '../../public/assets/dried-fruits.jpg';
+import herbsImg from '../../public/assets/herbs.jpg';
+import specialtyImg from '../../public/assets/specialty.jpg';
 
 const categories = [
   { name: 'Nuts & Legumes', image: nutsImg },

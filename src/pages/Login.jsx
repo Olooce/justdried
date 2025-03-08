@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { supabase } from '../supabase'; // ✅ Adjust the path if needed
+import { supabase } from '../supabase';
 
 
 const Login = () => {
