@@ -1,26 +1,24 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from '@supabase/supabase-js';
 
-const SUPABASE_URL = "https://mixrsoxzxhlxzlotjfbm.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1peHJzb3h6eGhseHpsb3RqZmJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE0MTQ1MzgsImV4cCI6MjA1Njk5MDUzOH0.BovhxWfUa5yTZZ0ZyfJOaK4UGrj-cszqcHvVi2gTJZg";
+console.log("Environment Variables:", import.meta.env);
 
-// a custom fetch function that adds headers to every request.
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+// Your fetch function
 const customFetch = async (input, init = {}) => {
-  init.headers = {
-    ...init.headers,
-    // These headers will be added to every request
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization",
-  };
-
-  // You could also log or modify the request here if needed.
-  return fetch(input, init);
+    init.headers = {
+        ...init.headers,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    };
+    return fetch(input, init);
 };
 
-// Initialize the Supabase client with your custom fetch.
-export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-  fetch: customFetch,
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+    fetch: customFetch,
 });
 
-
-console.log("🚀 Supabase Initialized:", supabase);
+console.log("Supabase Initialized:", supabase);
