@@ -1,10 +1,7 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
-
 import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = import.meta.env.SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.SUPABASE_ANON_KEY;
 
 // Your fetch function
 const customFetch = async (input, init = {}) => {
@@ -21,4 +18,4 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     fetch: customFetch,
 });
 
-console.log("🚀 Supabase Initialized:", supabase);
+console.log("Supabase Initialized:", supabase);
