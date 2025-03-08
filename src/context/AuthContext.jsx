@@ -1,4 +1,4 @@
-import { supabase } from '../supabase'; // ✅ Adjust the path if needed
+import { supabase } from '../supabase';
 
 import { createContext, useContext, useState } from 'react';
 
@@ -8,11 +8,11 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const login = (userData) => {
-    setUser(userData); // ✅ Simulating login
+    setUser(userData);
   };
 
   const logout = () => {
-    setUser(null); // ✅ Clear user on logout
+    setUser(null);
   };
 
   return (
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// ✅ Custom hook to access authentication context
+// Custom hook to access authentication context
 export const useAuth = () => {
   return useContext(AuthContext);
 };

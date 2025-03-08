@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../context/CartContext';
-import { supabase } from '../supabase'; // ✅ Import Supabase
+import { supabase } from '../supabase'; //
 import '../styles/Cart.css';
 
 const Cart = () => {
   const { cart, setCart, removeFromCart } = useContext(CartContext);
-  const [cartItems, setCartItems] = useState([]); // 🔥 Local state for fetched cart items
+  const [cartItems, setCartItems] = useState([]);
 
-  // 🔥 Fetch cart items from Supabase on mount
+  // Fetch cart items from Supabase on mount
   useEffect(() => {
     const fetchCartItems = async () => {
       let { data, error } = await supabase.from('cart').select('*');
@@ -20,15 +20,15 @@ const Cart = () => {
     fetchCartItems();
   }, [cart]);
 
-  // ✅ Calculate total price
+  // Calculate total price
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
-  // 🔥 Handle checkout: Clear cart from Supabase
+  // Handle checkout: Clear cart from Supabase
   const handleCheckout = async () => {
     alert('Thank you for your purchase!');
-    await supabase.from('cart').delete().neq('id', 0); // ✅ Clear all cart items
-    setCart([]); // ✅ Clear cart in React state
-    setCartItems([]); // ✅ Clear local state
+    await supabase.from('cart').delete().neq('id', 0);
+    setCart([]); // Clear cart in React state
+    setCartItems([]); // Clear local state
   };
 
   return (

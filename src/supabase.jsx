@@ -21,4 +21,3 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     fetch: customFetch,
 });
 
-console.log("Supabase Initialized:", supabase);
