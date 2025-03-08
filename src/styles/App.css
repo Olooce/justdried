@@ -2,12 +2,42 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #f9f9f9; /* ✅ Light background for better contrast */
 }
 
+/* ✅ Improved product grid for better layout */
 .product-grid {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem; /* 🔥 Slightly increased gap for better spacing */
   flex-wrap: wrap;
   justify-content: center;
+  padding: 2rem; /* 🔥 Increased padding for better spacing */
+  max-width: 1200px; /* ✅ Prevents it from stretching too wide */
+  margin: 0 auto; /* ✅ Centers it properly */
+}
+
+/* ✅ Ensures products have a uniform size */
+.product-card {
+  background: white;
   padding: 1rem;
+  border-radius: 8px; /* ✅ Smooth edges */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* ✅ Adds depth */
+  max-width: 250px; /* ✅ Keeps them uniform */
+  text-align: center;
+}
+/* Ensure the app takes full height */
+#root, .app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full viewport height */
+}
+
+/* Make main content take up space and push footer down */
+.main-content {
+  flex: 1;
+}
+
+/* Footer stays at the bottom */
+.footer {
+  margin-top: auto;
 }

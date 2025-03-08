@@ -1,79 +1,90 @@
+import { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-
-import peanutsImage from '../assets/peanutsjpg.jpg';
-import almondsImage from '../assets/almonds.jpeg';
-import driedMangoImage from '../assets/dried-mango.jpg';
-import moringaImage from '../assets/moringa.jpg';
-import sunDriedTomatoesImage from '../assets/sundried-tomatoes.jpg';
+import { CartContext } from '../context/CartContext';
+import { supabase } from '../supabase'; // ✅ Import Supabase
 
 const Shop = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const selectedCategory = queryParams.get('category');
 
-  const allProducts = [
-    {
-      name: 'Peanuts',
-      category: 'Nuts & Legumes',
-      image: peanutsImage,
-      price: 'Ksh 200/250g',
-      description: 'Rich in protein and healthy fats, great for heart health.'
-    },
-    {
-      name: 'Almonds',
-      category: 'Nuts & Legumes',
-      image: almondsImage,
-      price: 'Ksh 500/100g',
-      description: 'Boosts brain function and supports weight management.'
-    },
-    {
-      name: 'Dried Mango',
-      category: 'Dried Fruits',
-      image: driedMangoImage,
-      price: 'Ksh 300/400g',
-      description: 'High in vitamin A and antioxidants for a healthy immune system.'
-    },
-    {
-      name: 'Moringa Powder',
-      category: 'Herbs & Spices',
-      image: moringaImage,
-      price: 'Ksh 400/100g',
-      description: 'A superfood packed with vitamins, minerals, and antioxidants.'
-    },
-    {
-      name: 'Sun-Dried Tomatoes',
-      category: 'Specialty Dried Foods',
-      image: sunDriedTomatoesImage,
-      price: 'Ksh 350/500g',
-      description: 'Rich in lycopene and supports heart health.'
-    }
-  ];
+  const { addToCart } = useContext(CartContext); // ✅ Use addToCart
 
-  const [filteredProducts, setFilteredProducts] = useState(allProducts);
+  // ✅ State to hold products and loading status
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  // 🔥 Fetch products from Supabase
   useEffect(() => {
-    if (selectedCategory) {
-      setFilteredProducts(allProducts.filter((product) => product.category === selectedCategory));
-    } else {
-      setFilteredProducts(allProducts);
+    const fetchProducts = async () => {
+      setLoading(true);
+
+      let { data, error } = await supabase.from('products').select('*');
+
+      if (error) {
+        console.error('❌ Error fetching products:', error);
+      } else {
+        console.log('✅ Fetched products:', data);
+        setProducts(data);
+      }
+
+      setLoading(false);
+    };
+
+    fetchProducts();
+  }, []);
+
+  // ✅ Filter by category (if selected)
+  const filteredProducts = selectedCategory
+    ? products.filter((product) => product.category === selectedCategory)
+    : products;
+
+  // ✅ Function to construct Supabase storage image URL
+  const getImageUrl = (imagePath) => {
+    // Remove any leading slash to avoid double slashes in the URL
+    const cleanPath = imagePath.startsWith('/') ? imagePath.substring(1) : imagePath;
+    const { data, error } = supabase
+      .storage
+      .from('product-images')
+      .getPublicUrl(cleanPath);
+    
+    if (error) {
+      console.error('Error fetching public URL:', error);
+      return null;
     }
-  }, [selectedCategory]);
+    
+    return data.publicUrl;
+  };
+  
 
   return (
     <div className="shop-page">
       <h2 className="shop-title">{selectedCategory ? selectedCategory : 'All Products'}</h2>
-      <div className="product-grid">
-        {filteredProducts.map((product, index) => (
-          <div key={index} className="product-card">
-            <img src={product.image} alt={product.name} className="product-image"/>
-            <h3 className="product-name">{product.name}</h3>
-            <p className="product-price">{product.price}</p>
-            <p className="product-description">{product.description}</p>
-            <button className="add-to-cart">Add to Cart</button>
-          </div>
-        ))}
-      </div>
+
+      {loading ? (
+        <p>Loading products...</p>
+      ) : filteredProducts.length === 0 ? (
+        <p>No products found.</p>
+      ) : (
+        <div className="product-grid">
+          {filteredProducts.map((product) => (
+            <div key={product.id} className="product-card">
+              <img
+                src={getImageUrl(product.image)} 
+                alt={product.name} 
+                className="product-image"
+                onError={(e) => (e.target.src = getImageUrl("default.jpg"))} // ✅ Fallback image
+              />
+              <h3 className="product-name">{product.name}</h3>
+              <p className="product-price">Ksh {product.price}</p>
+              <p className="product-description">{product.description}</p>
+              <button className="add-to-cart" onClick={() => addToCart(product)}>
+                Add to Cart
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

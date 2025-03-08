@@ -1,35 +1,54 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../context/CartContext';
+import { supabase } from '../supabase'; // ✅ Import Supabase
 import '../styles/Cart.css';
 
 const Cart = () => {
-  const { cart, removeFromCart, setCart } = useContext(CartContext);
+  const { cart, setCart, removeFromCart } = useContext(CartContext);
+  const [cartItems, setCartItems] = useState([]); // 🔥 Local state for fetched cart items
 
-  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+  // 🔥 Fetch cart items from Supabase on mount
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      let { data, error } = await supabase.from('cart').select('*');
+      if (error) {
+        console.error('Error fetching cart:', error);
+      } else {
+        setCartItems(data);
+      }
+    };
+    fetchCartItems();
+  }, [cart]);
 
-  const handleCheckout = () => {
+  // ✅ Calculate total price
+  const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  // 🔥 Handle checkout: Clear cart from Supabase
+  const handleCheckout = async () => {
     alert('Thank you for your purchase!');
-    // Clear the cart after checkout
-    setCart([]);
+    await supabase.from('cart').delete().neq('id', 0); // ✅ Clear all cart items
+    setCart([]); // ✅ Clear cart in React state
+    setCartItems([]); // ✅ Clear local state
   };
 
   return (
     <div className="cart">
       <h2>Your Cart</h2>
-      {cart.length === 0 ? (
+      {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <>
           <ul>
-            {cart.map((item, index) => (
-              <li key={index}>
+            {cartItems.map((item) => (
+              <li key={item.id}>
                 <h3>{item.name}</h3>
-                <p>${item.price}</p>
+                <p>Ksh {item.price}</p>
+                <p>Quantity: {item.quantity}</p>
                 <button onClick={() => removeFromCart(item.id)}>Remove</button>
               </li>
             ))}
           </ul>
-          <h3>Total: ${totalPrice.toFixed(2)}</h3>
+          <h3>Total: Ksh {totalPrice.toFixed(2)}</h3>
           <button className="checkout-button" onClick={handleCheckout}>
             Checkout
           </button>
